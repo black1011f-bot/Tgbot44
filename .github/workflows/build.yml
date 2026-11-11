@@ -26,20 +26,37 @@ jobs:
 
       - name: Unpack project
         run: |
-          unzip -q Bounty_Hub_Cloud_Build_Package.zip -d source
-          cd source/Bounty_Hub_App
+          ZIP_FILE="$(find . -maxdepth 2 -type f -iname '*.zip' -print -quit)"
+          if [ -z "$ZIP_FILE" ]; then
+            echo "No ZIP archive found"
+            exit 1
+          fi
+          mkdir -p source
+          unzip -q "$ZIP_FILE" -d source
+
+          PACKAGE_FILE="$(find source -name package.json -not -path '*/node_modules/*' -print -quit)"
+          if [ -z "$PACKAGE_FILE" ]; then
+            echo "No package.json found"
+            exit 1
+          fi
+
+          APP_DIR="$(dirname "$PACKAGE_FILE")"
+          echo "APP_DIR=$APP_DIR" >> "$GITHUB_ENV"
+          cd "$APP_DIR"
           npm install --no-audit --no-fund
-          npx cap add android
+          if [ ! -d android ]; then
+            npx cap add android
+          fi
           npx cap sync android
 
       - name: Build APK
         run: |
-          cd source/Bounty_Hub_App/android
+          cd "$APP_DIR/android"
           chmod +x gradlew
           ./gradlew --no-daemon assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: Bounty-Hub-APK
-          path: source/Bounty_Hub_App/android/app/build/outputs/apk/debug/app-debug.apk
+          path: ${{ env.APP_DIR }}/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
