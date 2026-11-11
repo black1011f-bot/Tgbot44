@@ -1,5 +1,5 @@
 
-name: Build Android APK
+name: Build Bounty Hub APK
 
 on:
   workflow_dispatch:
@@ -15,59 +15,63 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Find and unpack project ZIP
+      - name: Find and extract source
         run: |
           set -e
-          ZIP_FILE=$(find . -maxdepth 1 -type f -iname 'BOUNTY_HUB_NEON_LEGENDS_V5_SOURCE*.zip' -print -quit)
-          if [ -z "$ZIP_FILE" ]; then
-            echo "ERROR: Project ZIP archive not found!"
-            echo "Files in repository:"
-            ls -la
-            exit 1
-          fi
-          echo "Found archive: $ZIP_FILE"
-          mkdir -p project
-          unzip -o "$ZIP_FILE" -d project
+          ZIP=$(find . -maxdepth 1 -iname 'BOUNTY_HUB_NEON_LEGENDS_V5_SOURCE*.zip' -print -quit)
+          test -n "$ZIP"
+          mkdir project
+          unzip -q "$ZIP" -d project
 
-      - name: Set up Java
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: project/Bounty_Hub_App/package-lock.json
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
 
-      - name: Find Gradle project
+      - name: Install app dependencies
+        working-directory: project/Bounty_Hub_App
         run: |
-          set -e
-          if [ -f project/gradlew ]; then
-            echo "GRADLE_DIR=project" >> "$GITHUB_ENV"
+          if [ -f package-lock.json ]; then
+            npm ci
           else
-            GRADLE_FILE=$(find project -name gradlew -type f -print -quit)
-            if [ -z "$GRADLE_FILE" ]; then
-              echo "ERROR: gradlew not found in archive"
-              find project -maxdepth 4 -type f | head -200
-              exit 1
-            fi
-            echo "GRADLE_DIR=$(dirname "$GRADLE_FILE")" >> "$GITHUB_ENV"
+            npm install
           fi
 
-      - name: Grant Gradle permission
-        run: chmod +x "$GRADLE_DIR/gradlew"
+      - name: Prepare Capacitor Android
+        working-directory: project/Bounty_Hub_App
+        run: |
+          set -e
+          npm install @capacitor/android
+          if [ ! -d android ]; then
+            npx cap add android
+          fi
+          npx cap sync android
 
       - name: Build APK
+        working-directory: project/Bounty_Hub_App/android
         run: |
-          cd "$GRADLE_DIR"
-          ./gradlew assembleDebug --stacktrace
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: BOUNTY-HUB-NEON-LEGENDS-APK
-          path: |
-            ${{ env.GRADLE_DIR }}/**/build/outputs/apk/**/*.apk
+          name: BOUNTY-HUB-NEON-LEGENDS
+          path: project/Bounty_Hub_App/android/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
