@@ -2,61 +2,53 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10051f">
-<meta name="description" content="BOUNTY HUB — загрузка игры для Windows. Android-версия появится позже.">
+<meta name="description" content="BOUNTY HUB — игровой проект">
 <title>BOUNTY HUB — Скачать игру</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{color-scheme:dark;--bg:#0d061b;--violet:#bd63ff;--pink:#e4b7ff;--text:#fffaff;--muted:#e0d0ee}
-*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}
-body{margin:0;min-height:100vh;min-height:100svh;color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 73% 43%,#4c1b78 0,transparent 45%),radial-gradient(ellipse at 18% 28%,#291044 0,transparent 42%),linear-gradient(115deg,#0a0415,#160824 53%,#0a0415);overflow-x:hidden}
-button,a{font:inherit}.page{width:min(1540px,100%);min-height:100vh;min-height:100svh;margin:auto;padding:22px clamp(18px,4.1vw,64px) 0;display:flex;flex-direction:column;position:relative}
-header{height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e7c9ff25;position:relative;z-index:5;flex-shrink:0}
-.brand{display:flex;align-items:center;gap:17px}.brand-star{font-size:52px;line-height:1;color:#c77aff;text-shadow:0 0 24px #a64dff}.brand-name{font-size:clamp(21px,2.5vw,32px);font-weight:950;letter-spacing:.11em;line-height:1}.brand-name span{color:#ca82ff}.brand-sub{font-size:12px;letter-spacing:.19em;color:#e6d7f5;margin-top:6px;font-weight:700}
-.top-actions{display:flex;align-items:center;gap:12px}.tg-pill{display:flex;align-items:center;gap:12px;padding:11px 19px;border:1px solid #c16bff;border-radius:999px;background:#190c2dbb;color:#f4e6ff;font-size:14px;box-shadow:0 0 22px #9c3de52a}.tg-dot{width:12px;height:12px;border-radius:50%;background:#38ec78;box-shadow:0 0 13px #36f17b}.close-app{width:48px;height:48px;border:1px solid #b45df0;border-radius:50%;color:#e9caff;background:#170b2a;font-size:31px;line-height:1;cursor:pointer;display:none}.in-telegram .close-app{display:block}
-.hero{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(10px,2vw,32px);align-items:center;flex:1;min-height:650px;padding:18px 0 12px;position:relative}
-.copy{position:relative;z-index:2;padding:28px 0 34px;max-width:650px}.eyebrow{font-size:13px;letter-spacing:.21em;text-transform:uppercase;color:#d9a5ff;font-weight:850;margin-bottom:22px}
-h1{font-size:clamp(52px,6.2vw,88px);line-height:.99;letter-spacing:-.055em;margin:0 0 24px;font-weight:950;text-wrap:balance;text-shadow:0 4px 28px #08010f88}h1 span{color:#d174ff;text-shadow:0 0 34px #b74eff82}
-.lead{font-size:clamp(17px,1.55vw,21px);line-height:1.48;color:#e4d4f0;max-width:540px;margin:0 0 31px}.choice-label{display:flex;align-items:center;gap:12px;color:#ead8fa;font-size:14px;margin:0 0 14px}.choice-label:before{content:"";height:1px;width:38px;background:linear-gradient(90deg,#f4c7ff,#a34ce7);box-shadow:0 0 10px #b959ff}
-.downloads{display:grid;gap:14px;max-width:540px}.download{display:flex;align-items:center;gap:18px;min-height:88px;width:100%;padding:14px 22px;border:1.5px solid #d89cff;border-radius:21px;text-align:left;color:white;cursor:pointer;background:linear-gradient(105deg,#7f28ceef,#48137fed 52%,#281040ef);box-shadow:0 0 10px #d36aff9c,0 0 32px #9b38e84f,inset 0 0 20px #e4b3ff24;transition:transform .18s,box-shadow .18s,border-color .18s}.download:hover{transform:translateY(-3px);border-color:#fff0ff;box-shadow:0 0 15px #e4a0ff,0 0 39px #a445f399,inset 0 0 22px #f0caff33}.download:focus-visible,.nav-link:focus-visible,.close-app:focus-visible{outline:3px solid white;outline-offset:4px}
-.platform-icon{width:47px;height:47px;flex:0 0 47px;display:grid;place-items:center;color:#fff}.platform-icon svg{width:43px;height:43px;fill:currentColor}.download-text{flex:1;min-width:0}.download-text strong{display:block;font-size:clamp(18px,1.6vw,22px);font-weight:800}.download-text small{display:block;margin-top:5px;font-size:13px;color:#e7cff9}.download-arrow{font-size:38px;line-height:1;color:#f1d8ff;font-weight:300;padding:0 5px}
-.features{display:flex;align-items:center;width:min(100%,540px);margin-top:25px;border:1px solid #b44df1;border-radius:17px;background:#170a2bc9;box-shadow:0 0 22px #9b33db36;padding:13px 14px}.feature{display:flex;align-items:center;justify-content:center;gap:9px;flex:1;min-width:0;color:#f1e5fa;font-size:clamp(12px,1.05vw,15px);font-weight:650}.feature+.feature{border-left:1px solid #be70ee88}.feature-icon{font-size:25px;color:#bd61ff;text-shadow:0 0 12px #b84dff}
-.message{min-height:40px;max-width:540px;margin:10px 2px 0;color:#e9cffb;font-size:13px;line-height:1.45}
-.art{position:relative;align-self:stretch;min-height:590px;display:flex;align-items:center;justify-content:center;isolation:isolate}.art:before{content:"";position:absolute;z-index:-1;inset:8% 1%;border-radius:50%;background:radial-gradient(ellipse,#a946ef55,transparent 68%);filter:blur(33px)}.art img{display:block;width:100%;height:min(76vh,760px);max-height:760px;object-fit:contain;object-position:center;filter:drop-shadow(0 16px 38px #bd71ff48);animation:enter .85s ease both}.art:after{content:"";position:absolute;z-index:-1;inset:12% 5% 8%;border:1px solid #c58aff25;border-radius:48% 48% 40% 40%;transform:rotate(3deg);pointer-events:none}
-.bottom-nav{min-height:84px;display:flex;align-items:stretch;justify-content:center;gap:clamp(25px,8vw,145px);border-top:1px solid #d8a4ff34;background:linear-gradient(180deg,#16082288,#0b0416f2);margin:0 calc(clamp(18px,4.1vw,64px)*-1);padding:0 clamp(20px,4vw,60px);position:relative;z-index:4}.nav-link{position:relative;display:flex;min-width:120px;align-items:center;justify-content:center;flex-direction:column;gap:3px;text-decoration:none;color:#d0b9e5;font-size:14px;padding:9px 10px 11px;transition:color .18s}.nav-link svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.nav-link.active{color:#d48aff;text-shadow:0 0 15px #bf65ff}.nav-link.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#bb59ff;box-shadow:0 0 15px #bb59ff}
-@keyframes enter{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
-@media(max-width:900px){.page{padding-left:22px;padding-right:22px}.hero{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);min-height:590px}.art{min-height:500px}.feature{font-size:12px}.feature-icon{font-size:21px}.bottom-nav{margin-left:-22px;margin-right:-22px}}
-@media(max-width:680px){html,body{min-height:100%;background:radial-gradient(ellipse at 50% 25%,#451c69 0,transparent 48%),linear-gradient(160deg,#0b0617,#170923 55%,#090412)}.page{min-height:100svh;padding:12px 16px 0}header{height:59px;padding-bottom:11px}.brand{gap:9px}.brand-star{font-size:37px}.brand-name{font-size:21px}.brand-sub{font-size:9px;letter-spacing:.15em;margin-top:4px}.tg-pill{padding:8px 11px;gap:8px;font-size:10px}.tg-dot{width:9px;height:9px}.close-app{width:36px;height:36px;font-size:24px}
-.hero{display:flex;flex-direction:column;gap:0;min-height:0;padding:18px 0 14px;align-items:stretch}.copy{order:0;padding:0;width:100%;max-width:none}.eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:11px}h1{font-size:clamp(39px,10.7vw,54px);line-height:1.01;margin-bottom:12px;letter-spacing:-.05em}.lead{font-size:14px;line-height:1.45;margin-bottom:13px;max-width:500px}.choice-label{font-size:12px;margin-bottom:9px;gap:9px}.choice-label:before{width:27px}
-.art{order:1;min-height:0;height:clamp(220px,59vw,330px);margin:-2px 0 -1px;overflow:hidden}.art img{height:100%;width:100%;object-fit:contain;object-position:center 45%;filter:drop-shadow(0 10px 25px #b85eff44)}.art:before{inset:8% 6%}.art:after{inset:8% 8% 5%}
-.downloads{order:2;max-width:none;gap:10px}.download{min-height:70px;padding:10px 13px;gap:13px;border-radius:16px}.platform-icon{width:39px;height:39px;flex-basis:39px}.platform-icon svg{width:36px;height:36px}.download-text strong{font-size:16px}.download-text small{font-size:11px;margin-top:3px}.download-arrow{font-size:30px}
-.features{margin-top:13px;padding:10px 7px;border-radius:14px}.feature{gap:5px;font-size:10px}.feature-icon{font-size:19px}.message{font-size:11px;min-height:32px;margin-top:7px}
-.bottom-nav{min-height:72px;gap:0;justify-content:space-around;margin:auto -16px 0;padding:0 7px;position:sticky;bottom:0;backdrop-filter:blur(14px)}.nav-link{min-width:0;flex:1;font-size:11px;padding:8px 3px 9px}.nav-link svg{width:24px;height:24px}}
-@media(max-width:360px){.page{padding-left:12px;padding-right:12px}.tg-pill{font-size:9px;padding:7px 8px}.brand-name{font-size:19px}.art{height:215px}.download{min-height:64px}.download-text strong{font-size:15px}.features{padding-inline:3px}.feature{font-size:9px}.bottom-nav{margin-left:-12px;margin-right:-12px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b0417;color:#fff;font-family:Inter,Arial,sans-serif}
+body{min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 76% 45%,#582080 0,transparent 48%),radial-gradient(ellipse at 40% 10%,#301044 0,transparent 42%),linear-gradient(110deg,#090313,#170824 58%,#0b0417)}
+.page{width:min(1672px,100%);min-height:100vh;margin:auto;position:relative;overflow:hidden;padding:25px 55px 36px}
+.page:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#bd65ff55 1px,transparent 1px);background-size:34px 34px;opacity:.12;mask-image:linear-gradient(90deg,#000,transparent 65%)}
+header{height:92px;display:flex;align-items:flex-start;position:relative;z-index:3}
+.brand{display:flex;align-items:center;gap:23px}.star{font-size:82px;line-height:.9;color:#c56cff;text-shadow:0 0 28px #b34dff}.brand-title{font-size:43px;line-height:1;font-weight:950;letter-spacing:-1.7px;font-style:italic;color:#e2b4ff;text-shadow:0 0 22px #b45cff88}.brand-sub{font-size:19px;letter-spacing:2px;font-weight:750;margin:7px 0 0 40px;color:#e7d8f4}
+.hero{height:calc(100vh - 153px);min-height:650px;max-height:850px;display:grid;grid-template-columns:44% 56%;align-items:center;position:relative;z-index:1}
+.copy{position:relative;z-index:2;padding:0 0 24px 4px}
+h1{font-size:clamp(64px,5.7vw,91px);font-weight:950;font-style:italic;line-height:.98;letter-spacing:-4px;margin:0 0 26px;text-shadow:0 5px 30px #09010f}h1 span{color:#d34dff;text-shadow:0 0 28px #d344ff88}
+.lead{font-size:clamp(21px,1.8vw,29px);line-height:1.32;color:#e8d9f3;margin:0 0 38px;max-width:570px}
+.downloads{display:grid;gap:17px;width:min(100%,560px)}
+.download{height:91px;border:2px solid #f0baff;border-radius:48px;background:linear-gradient(100deg,#841bdf,#590bb6 58%,#42117d);box-shadow:0 0 9px #d968ff,0 0 26px #c23bff88,inset 0 0 19px #edb2ff4d;display:flex;align-items:center;padding:0 31px;gap:24px;color:#fff;text-align:left;cursor:pointer;transition:.18s}
+.download:hover{transform:translateY(-2px);box-shadow:0 0 14px #f3c4ff,0 0 38px #c23bffbb}
+.download svg{width:49px;height:49px;fill:#fff;flex:none}.download strong{font-size:25px;font-weight:850;white-space:nowrap}.arrow{font-size:56px;font-weight:300;margin-left:auto;line-height:1;color:#f5dfff}
+.features{margin-top:29px;width:min(100%,600px);height:85px;border:1px solid #bb4eff;border-radius:44px;background:#18092bdf;box-shadow:0 0 16px #a72be966;display:flex;align-items:center;justify-content:space-around}
+.feature{height:48px;display:flex;align-items:center;justify-content:center;gap:12px;flex:1;font-size:18px;color:#f5eaff}.feature+.feature{border-left:1px solid #bd75ed}.feature-icon{font-size:39px;color:#c14cff;text-shadow:0 0 15px #c14cff}
+.art{position:absolute;z-index:0;right:-55px;top:-4px;bottom:-38px;width:66%;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
+.art img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:drop-shadow(0 0 35px #bd5cff55);mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 100%)}
+.notice{min-height:24px;margin:12px 8px 0;color:#edcfff;font-size:14px;max-width:540px}
+@media(max-width:1050px){.page{padding:22px 32px}.hero{grid-template-columns:48% 52%}.art{width:65%;right:-32px}.brand-title{font-size:35px}.brand-sub{font-size:16px}.star{font-size:68px}h1{font-size:clamp(55px,6vw,70px)}.download{height:78px;padding:0 22px;gap:15px}.download strong{font-size:20px}.download svg{width:40px;height:40px}.features{height:72px}.feature{font-size:15px}.feature-icon{font-size:30px}}
+@media(max-height:700px) and (min-width:850px){.hero{min-height:550px}.art{bottom:-15px}.copy{padding-bottom:0}h1{font-size:65px;margin-bottom:18px}.lead{font-size:20px;margin-bottom:24px}.download{height:72px}.features{height:66px;margin-top:19px}}
 </style>
 </head>
 <body>
-<div class="page" id="home">
-<header><div class="brand"><div class="brand-star" aria-hidden="true">✦</div><div><div class="brand-name">BOUNTY <span>HUB</span></div><div class="brand-sub">ИГРОВОЙ ПРОЕКТ</div></div></div><div class="top-actions"><div class="tg-pill"><span class="tg-dot"></span><span>Telegram Mini App</span></div><button class="close-app" id="closeApp" type="button" aria-label="Закрыть приложение">×</button></div></header>
+<div class="page">
+<header><div class="brand"><div class="star">✦</div><div><div class="brand-title">BOUNTY HUB</div><div class="brand-sub">ИГРОВОЙ ПРОЕКТ</div></div></div></header>
 <main class="hero">
-<section class="copy"><div class="eyebrow">ТВОЁ НОВОЕ ПРИКЛЮЧЕНИЕ</div><h1>Скачайте игру<br>прямо <span>сейчас!</span></h1><p class="lead">Погрузитесь в мир BOUNTY HUB и начните своё приключение!</p><div class="choice-label">Выберите свою платформу</div>
-<div class="downloads" id="downloads">
-<button class="download" type="button" data-platform="Windows"><span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M3 8.5 21 6v17H3V8.5Zm21-2.8 21-3v20.3H24V5.7ZM3 25h18v17L3 39.5V25Zm21 0h21v20.2l-21-3V25Z"/></svg></span><span class="download-text"><strong>Скачать для Windows</strong><small>Версия для компьютера</small></span><span class="download-arrow" aria-hidden="true">›</span></button>
-<button class="download" type="button" data-platform="Android"><span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M13.4 15.5 9.6 9a1.2 1.2 0 0 1 2.1-1.2l4 6.8a18.2 18.2 0 0 1 16.6 0l4-6.8A1.2 1.2 0 0 1 38.4 9l-3.8 6.5A17.1 17.1 0 0 1 42 29H6a17.1 17.1 0 0 1 7.4-13.5ZM15 23a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm18 0a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2ZM8 31h32v8a3 3 0 0 1-3 3h-2v4a2 2 0 0 1-4 0v-4H17v4a2 2 0 0 1-4 0v-4h-2a3 3 0 0 1-3-3v-8Z"/></svg></span><span class="download-text"><strong>Скачать для Android</strong><small>Мобильная версия</small></span><span class="download-arrow" aria-hidden="true">›</span></button>
+<section class="copy">
+<h1>Скачайте игру<br>прямо <span>сейчас!</span></h1>
+<p class="lead">Погрузитесь в мир BOUNTY HUB<br>и начните своё приключение!</p>
+<div class="downloads">
+<button class="download" type="button" data-platform="Windows"><svg viewBox="0 0 48 48"><path d="M3 8.5 21 6v17H3V8.5Zm21-2.8 21-3v20.3H24V5.7ZM3 25h18v17L3 39.5V25Zm21 0h21v20.2l-21-3V25Z"/></svg><strong>Скачать для Windows</strong><span class="arrow">›</span></button>
+<button class="download" type="button" data-platform="Android"><svg viewBox="0 0 48 48"><path d="M13.4 15.5 9.6 9a1.2 1.2 0 0 1 2.1-1.2l4 6.8a18.2 18.2 0 0 1 16.6 0l4-6.8A1.2 1.2 0 0 1 38.4 9l-3.8 6.5A17.1 17.1 0 0 1 42 29H6a17.1 17.1 0 0 1 7.4-13.5ZM15 23a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm18 0a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2ZM8 31h32v8a3 3 0 0 1-3 3h-2v4a2 2 0 0 1-4 0v-4H17v4a2 2 0 0 1-4 0v-4h-2a3 3 0 0 1-3-3v-8Z"/></svg><strong>Скачать для Android</strong><span class="arrow">›</span></button>
 </div>
-<div class="features" aria-label="Преимущества"><div class="feature"><span class="feature-icon">ϟ</span><span>Быстрый запуск</span></div><div class="feature"><span class="feature-icon">◆</span><span>Безопасно</span></div><div class="feature"><span class="feature-icon">★</span><span>Бесплатно</span></div></div><div class="message" id="message" role="status" aria-live="polite"></div></section>
-<div class="art" aria-label="Героиня BOUNTY HUB"><img alt="Эльфийка BOUNTY HUB с серебряными волосами и фиолетовыми глазами" src="https://img-v3.deepdreamgenerator.com/994631/md_dgbkt4_789de470a05c0eef1fc48ee41a2fbe21c98ca130.jpg" referrerpolicy="no-referrer"></div>
+<div class="features"><div class="feature"><span class="feature-icon">ϟ</span><span>Быстрый<br>запуск</span></div><div class="feature"><span class="feature-icon">◆</span><span>Безопасно</span></div><div class="feature"><span class="feature-icon">★</span><span>Бесплатно</span></div></div>
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+</section>
+<div class="art"><img src="https://img-v3.deepdreamgenerator.com/994631/md_dgbkt4_789de470a05c0eef1fc48ee41a2fbe21c98ca130.jpg" alt="Героиня BOUNTY HUB в фиолетовом фэнтези-мире"></div>
 </main>
-<nav class="bottom-nav" aria-label="Основная навигация">
-<a class="nav-link active" href="#home" aria-current="page"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Главная</span></a>
-<a class="nav-link" href="#downloads"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg><span>Скачать</span></a>
-<a class="nav-link" href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.5 1.8c-1.3 1.2-2 1.4-2 3.2M12 17.5h.01"/></svg><span>О проекте</span></a>
-</nav><div id="about" hidden>BOUNTY HUB — игровой проект. Основная платформа разработки — Windows.</div>
 </div>
 <script>
-(function(){const tg=window.Telegram&&window.Telegram.WebApp;if(tg){tg.ready();tg.expand();document.body.classList.add("in-telegram");try{tg.setHeaderColor("#10051f");tg.setBackgroundColor("#0d061b")}catch(e){}}const message=document.getElementById("message");const messages={Windows:"Версия для Windows сейчас разрабатывается. Кнопка загрузки появится после публикации сборки.",Android:"Android-версия пока не выпускается. Сейчас основная разработка идёт для Windows."};document.querySelectorAll("[data-platform]").forEach(button=>button.addEventListener("click",()=>{message.textContent=messages[button.dataset.platform]}));document.getElementById("closeApp").addEventListener("click",()=>{if(tg&&typeof tg.close==="function")tg.close()});document.querySelectorAll(".nav-link").forEach(link=>link.addEventListener("click",()=>{document.querySelectorAll(".nav-link").forEach(x=>{x.classList.remove("active");x.removeAttribute("aria-current")});link.classList.add("active");link.setAttribute("aria-current","page")}))})();
+const status={Windows:"Версия для Windows сейчас разрабатывается. Кнопка загрузки появится после публикации сборки.",Android:"Android-версия пока не выпускается. Основная разработка BOUNTY HUB сейчас идёт для Windows."};
+document.querySelectorAll("[data-platform]").forEach(b=>b.addEventListener("click",()=>document.getElementById("notice").textContent=status[b.dataset.platform]));
 </script>
-</body>
-</html>
+</body></html>
