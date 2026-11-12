@@ -88,7 +88,7 @@
   }
   function saveState() {
     try {
-      state.hasProgress = !!state.route && state.screen !== "menu";
+      state.hasProgress = !!state.route && state.screen !== "ending";
       localStorage.setItem(SAVE_KEY, JSON.stringify(state));
     } catch (_) {}
   }
