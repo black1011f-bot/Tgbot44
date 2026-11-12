@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
 
 class MainActivity : Activity() {
     private lateinit var gameView: WebView
@@ -32,14 +31,18 @@ class MainActivity : Activity() {
         }
         setContentView(gameView)
 
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                gameView.evaluateJavascript(
-                    "if (window.handleAndroidBack) window.handleAndroidBack();",
-                    null
-                )
-            }
-        })
+    }
+
+    @Deprecated("Deprecated in Android API; delegated to the game's navigation")
+    override fun onBackPressed() {
+        if (::gameView.isInitialized) {
+            gameView.evaluateJavascript(
+                "if (window.handleAndroidBack) window.handleAndroidBack();",
+                null
+            )
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onDestroy() {
