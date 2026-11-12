@@ -56,7 +56,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: android-v${{ github.run_number }}
-          name: Neon Hearts: After Dark — Android build ${{ github.run_number }}
+          name: 'Neon Hearts: After Dark — Android build ${{ github.run_number }}'
           body: |
             First playable Android build of Neon Hearts: After Dark.
             Install the APK manually on an Android device.
