@@ -1,0 +1,106 @@
+name: Build Bounty Hub Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "BOUNTY_HUB_NEON_LEGENDS_V5_SOURCE*.zip"
+      - "desktop/**"
+      - ".github/workflows/build-windows.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Extract game source and prepare Electron project
+        shell: pwsh
+        run: |
+          $archive = Get-ChildItem -Path $env:GITHUB_WORKSPACE -Filter "BOUNTY_HUB_NEON_LEGENDS_V5_SOURCE*.zip" -File |
+            Sort-Object Name |
+            Select-Object -First 1
+
+          if (-not $archive) {
+            throw "Game source ZIP was not found in the repository root."
+          }
+
+          $buildRoot = Join-Path $env:GITHUB_WORKSPACE "build-source"
+          New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
+          Expand-Archive -LiteralPath $archive.FullName -DestinationPath $buildRoot -Force
+
+          $project = Join-Path $buildRoot "Bounty_Hub_App"
+          if (-not (Test-Path (Join-Path $project "www/index.html"))) {
+            throw "The source archive does not contain Bounty_Hub_App/www/index.html."
+          }
+
+          New-Item -ItemType Directory -Path (Join-Path $project "electron") -Force | Out-Null
+          Copy-Item "desktop/package.json" (Join-Path $project "package.json") -Force
+          Copy-Item "desktop/electron/main.cjs" (Join-Path $project "electron/main.cjs") -Force
+
+          "PROJECT_PATH=$project" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Install dependencies
+        shell: pwsh
+        run: npm install
+        working-directory: build-source/Bounty_Hub_App
+
+      - name: Verify game source
+        shell: pwsh
+        run: |
+          npm run check
+          npm run verify
+        working-directory: build-source/Bounty_Hub_App
+
+      - name: Build Windows installer and portable EXE
+        shell: pwsh
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:win
+        working-directory: build-source/Bounty_Hub_App
+
+      - name: Check build output
+        shell: pwsh
+        run: |
+          $files = Get-ChildItem "build-source/Bounty_Hub_App/release" -Filter "*.exe" -File
+          if ($files.Count -lt 1) {
+            throw "electron-builder did not produce any EXE files."
+          }
+          $files | ForEach-Object { Write-Host "$($_.Name) — $([math]::Round($_.Length / 1MB, 2)) MB" }
+
+      - name: Upload Windows EXE files
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bounty-Hub-Windows-${{ github.run_number }}
+          path: build-source/Bounty_Hub_App/release/*.exe
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish downloadable Windows release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: windows-v${{ github.run_number }}
+          name: Bounty Hub — NEON LEGENDS Windows build ${{ github.run_number }}
+          body: |
+            Windows x64 build of Bounty Hub — NEON LEGENDS.
+
+            - Setup EXE: install the game and create a desktop shortcut.
+            - Portable EXE: run without installing.
+
+            Built from the repository source and verified in GitHub Actions.
+          files: build-source/Bounty_Hub_App/release/*.exe
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
