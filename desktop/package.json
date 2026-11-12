@@ -1,0 +1,47 @@
+{
+  "name": "bounty-hub-neon-legends-desktop",
+  "version": "6.0.0",
+  "private": true,
+  "description": "Bounty Hub — NEON LEGENDS Windows desktop build",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "check": "node --check www/app.js && node --check scripts/verify.mjs",
+    "verify": "node scripts/verify.mjs",
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis portable --x64"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.bountyhub.neonlegends",
+    "productName": "Bounty Hub - NEON LEGENDS",
+    "directories": {
+      "output": "release"
+    },
+    "asar": true,
+    "files": [
+      "www/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "Bounty-Hub-NEON-LEGENDS-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Bounty-Hub-NEON-LEGENDS-Portable-${version}.${ext}"
+    }
+  }
+}
