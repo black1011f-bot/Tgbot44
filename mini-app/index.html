@@ -1,72 +1,24 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#10051f">
-<meta name="description" content="BOUNTY HUB — игровой проект">
-<title>BOUNTY HUB</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:#10051f}
-body{display:flex;justify-content:center;align-items:flex-start;overflow-x:hidden}
-.page{position:relative;width:100%;max-width:1536px;line-height:0}
-.art{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
-.mobile{display:none}
-.hit{position:absolute;z-index:4;display:block;border:0;border-radius:999px;background:transparent;padding:0;margin:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.hit:focus-visible{outline:3px solid #fff;outline-offset:4px}
-.desktop .windows{left:3.2%;top:51.0%;width:33.8%;height:9.7%}
-.desktop .android{left:3.2%;top:62.7%;width:33.8%;height:9.7%}
-.mobile{max-width:864px}
-@media(max-width:700px) and (orientation:portrait){
- .desktop{display:none}
- .mobile{display:block}
- .mobile .windows{left:10.5%;top:72.5%;width:79.5%;height:7.3%}
- .mobile .android{left:10.5%;top:81.1%;width:79.5%;height:7.3%}
-}
-.overlay{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(5,0,15,.8);backdrop-filter:blur(7px);line-height:1.4}
-.overlay.open{display:flex}
-.dialog{width:min(440px,100%);padding:27px 23px;text-align:center;color:#fff;font-family:Arial,system-ui,sans-serif;border:1px solid #d46cff;border-radius:22px;background:linear-gradient(145deg,#31005a,#10001f 75%);box-shadow:0 0 35px rgba(190,55,255,.45)}
-.dialog h2{margin:0 0 12px;font-size:24px}
-.dialog p{margin:0 0 22px;color:#eadcf5;font-size:16px}
-.close{border:1px solid #e6b4ff;border-radius:999px;padding:11px 28px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(90deg,#8e16db,#4c0a87);touch-action:manipulation}
-</style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909"><meta name="description" content="BOUNTY GAMING — студия и BOUNTY HUB, игровое пространство с несколькими режимами.">
+<title>BOUNTY GAMING — BOUNTY HUB</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="page desktop" aria-label="BOUNTY HUB — версия для компьютера">
- <img class="art" src="https://i.postimg.cc/brJNQs8q/IMG-20261113-110211-954.jpg" alt="BOUNTY HUB" draggable="false">
- <button class="hit windows" type="button" aria-label="Скачать для Windows" data-platform="Windows"></button>
- <button class="hit android" type="button" aria-label="Скачать для Android" data-platform="Android"></button>
+<div class="backdrop"></div><div class="grain"></div>
+<header class="topbar"><a class="brand" href="#home">BOUNTY<span>®</span></a><nav id="nav"><a href="#about">О проекте</a><a href="#modes">Режимы</a><a href="#gallery">Галерея</a><a href="configurations.html">Конфигурации</a><a href="privacy.html">Конфиденциальность</a></nav><a class="nav-cta" href="https://t.me/bounty_hub_bot" target="_blank" rel="noreferrer">Telegram <span>↗</span></a><button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">☰</button></header>
+<main id="home">
+<section class="hero wrap">
+<div class="hero-copy reveal"><div class="eyebrow"><i></i> НЕЗАВИСИМАЯ ИГРОВАЯ СТУДИЯ</div><h1>ИГРАЙ.<br><span>ОБЪЕДИНЯЙ.</span><br>ПОБЕЖДАЙ.</h1><p>BOUNTY GAMING создаёт игровые пространства, где каждая партия становится новой историей. Знакомься с BOUNTY HUB.</p><div class="hero-actions"><a class="btn btn-light" href="#about">Исследовать проект <b>↘</b></a><a class="btn btn-ghost" href="https://t.me/bounty_gaming" target="_blank" rel="noreferrer">Наш Telegram ↗</a></div><div class="hero-meta"><span>BOUNTY HUB</span><span>PC — В РАЗРАБОТКЕ</span></div></div>
+<div class="hero-art reveal"><div class="art-frame"><img src="https://i.postimg.cc/sxGJ2VL9/file-000000002e988243b88372fe5a8caba3.png" alt="Арт BOUNTY HUB"></div><div class="art-tag">THE WORLD<br>IS YOURS.</div><div class="avatar-float"><img src="https://i.postimg.cc/50fn9d5C/file-00000000a1cc81f487f9d1809b3ddd3f.png" alt="Аватар BOUNTY"></div></div>
+</section>
+<section class="ticker" aria-label="BOUNTY GAMING"><div>BOUNTY GAMING <span>✳</span> BOUNTY HUB <span>✳</span> PLAY TOGETHER <span>✳</span> BOUNTY GAMING <span>✳</span> BOUNTY HUB <span>✳</span></div></section>
+<section class="section wrap" id="about"><div class="section-head reveal"><span class="eyebrow">01 / О ПРОЕКТЕ</span><h2>БОЛЬШЕ, ЧЕМ<br><em>ПРОСТО ИГРА.</em></h2></div><div class="about-grid"><p class="lead reveal">BOUNTY HUB — игровая платформа, объединяющая компанию друзей, разные игровые форматы и общий прогресс.</p><div class="about-note reveal"><p>Создавай комнаты, приглашай друзей и выбирай режим под настроение. Проект развивается поэтапно: сначала версия для ПК, затем мобильная версия.</p><a class="text-link" href="https://t.me/bounty_hub_bot" target="_blank" rel="noreferrer">Следить за проектом ↗</a></div></div>
+<div class="stats reveal"><div><strong>04</strong><span>ИГРОВЫХ РЕЖИМА В ПЛАНЕ</span></div><div><strong>PC</strong><span>ПЕРВЫЙ ЭТАП РАЗРАБОТКИ</span></div><div><strong>01</strong><span>ОБЩАЯ ИГРОВАЯ ВСЕЛЕННАЯ</span></div></div></section>
+<section class="section modes-section" id="modes"><div class="wrap"><div class="section-head reveal"><span class="eyebrow">02 / ИГРОВЫЕ РЕЖИМЫ</span><h2>ВЫБИРАЙ СВОЙ<br><em>СЦЕНАРИЙ.</em></h2></div><div class="mode-grid"><article class="mode reveal"><span>01 / SOCIAL DEDUCTION</span><h3>ШПИОН</h3><p>Найди того, кто не знает секретную локацию. Внимание к деталям решает всё.</p><b>01</b></article><article class="mode reveal"><span>02 / PARTY GAME</span><h3>КРОКОДИЛ</h3><p>Объясняй слова жестами, угадывай и успей до конца раунда.</p><b>02</b></article><article class="mode reveal"><span>03 / CARD GAME</span><h3>МАНЧКИН</h3><p>Собирай усиления, проходи испытания и соревнуйся с друзьями.</p><b>03</b></article><article class="mode reveal"><span>04 / SURVIVAL</span><h3>БУНКЕР</h3><p>Обсуждай, аргументируй и решай, кто попадёт в убежище.</p><b>04</b></article></div><p class="small-note">Режимы и описания отражают план проекта. Доступность функций будет объявлена отдельно.</p></div></section>
+<section class="section wrap gallery-section" id="gallery"><div class="section-head reveal"><span class="eyebrow">03 / ВИЗУАЛЬНЫЙ МИР</span><h2>ЗАГЛЯНИ<br><em>ВНУТРЬ.</em></h2></div><div class="gallery"><figure class="gallery-large reveal"><img src="https://i.postimg.cc/3NJS15WP/file-00000000a56081f48c1aa64918299b99.png" alt="Иллюстрация BOUNTY GAMING"><figcaption>BOUNTY HUB / CONCEPT 01</figcaption></figure><figure class="reveal"><img src="https://i.postimg.cc/xT8pb2wk/file-00000000b9c081f4b2dcc96a91e6c722.png" alt="Концепт игрового мира"><figcaption>BOUNTY HUB / CONCEPT 02</figcaption></figure><figure class="reveal"><img src="https://i.postimg.cc/NfnJ6ntW/file-00000000839481f48e472e7530653591.png" alt="Арт игрового проекта"><figcaption>BOUNTY HUB / CONCEPT 03</figcaption></figure></div></section>
+<section class="join wrap reveal"><div><span class="eyebrow">04 / БУДЬ НА СВЯЗИ</span><h2>УВИДИМСЯ<br><em>В ИГРЕ.</em></h2><p>Новости, анонсы и связь с командой — в наших Telegram-каналах.</p></div><div class="join-actions"><a class="btn btn-light" href="https://t.me/bounty_hub_bot" target="_blank" rel="noreferrer">Открыть бота ↗</a><a class="btn btn-ghost" href="https://t.me/bounty_gaming" target="_blank" rel="noreferrer">Канал BOUNTY GAMING ↗</a></div></section>
 </main>
-<main class="page mobile" aria-label="BOUNTY HUB — мобильная версия">
- <img class="art" src="https://i.postimg.cc/KvCvMGWY/IMG-20261113-110803-571.jpg" alt="BOUNTY HUB" draggable="false">
- <button class="hit windows" type="button" aria-label="Скачать для Windows" data-platform="Windows"></button>
- <button class="hit android" type="button" aria-label="Скачать для Android" data-platform="Android"></button>
-</main>
-<div class="overlay" id="notice" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
- <div class="dialog">
-  <h2 id="noticeTitle">Игра в разработке</h2>
-  <p id="noticeText">Версия для Windows пока разрабатывается. Следите за новостями BOUNTY HUB!</p>
-  <button class="close" type="button" id="closeNotice">Понятно</button>
- </div>
-</div>
-<script>
-const notice=document.getElementById('notice');
-const noticeText=document.getElementById('noticeText');
-document.querySelectorAll('[data-platform]').forEach(button=>{
- button.addEventListener('click',()=>{
-  const platform=button.dataset.platform;
-  noticeText.textContent='Версия для '+platform+' пока разрабатывается. Следите за новостями BOUNTY HUB!';
-  notice.classList.add('open');
- });
-});
-document.getElementById('closeNotice').addEventListener('click',()=>notice.classList.remove('open'));
-notice.addEventListener('click',event=>{if(event.target===notice)notice.classList.remove('open')});
-document.addEventListener('keydown',event=>{if(event.key==='Escape')notice.classList.remove('open')});
-// Убираем стандартное меню сохранения/открытия картинки и перетаскивание.
-document.addEventListener('contextmenu',event=>event.preventDefault());
-document.addEventListener('dragstart',event=>event.preventDefault());
-document.addEventListener('selectstart',event=>event.preventDefault());
-</script>
-</body>
-</html>
+<footer class="footer wrap"><a class="brand" href="#home">BOUNTY<span>®</span></a><span>© <span id="year"></span> BOUNTY GAMING</span><div><a href="configurations.html">Конфигурации</a><a href="privacy.html">Политика конфиденциальности</a></div></footer>
+<script src="script.js"></script></body></html>
